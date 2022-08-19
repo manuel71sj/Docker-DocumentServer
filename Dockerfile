@@ -49,7 +49,6 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d && \
     ttf-mscorefonts-installer \
     xvfb \
     zlib1g && \
-    apt-get -yq fonts-dejavu fonts-liberation fonts-crosextra-carlito fonts-takao-gothic fonts-opensymbol && \
     if [  $(ls -l /usr/share/fonts/truetype/msttcorefonts | wc -l) -ne 61 ]; \
     then echo 'msttcorefonts failed to download'; exit 1; fi  && \
     echo "SERVER_ADDITIONAL_ERL_ARGS=\"+S 1:1\"" | tee -a /etc/rabbitmq/rabbitmq-env.conf && \
@@ -66,6 +65,8 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d && \
     service supervisor stop && \
     service nginx stop && \
     rm -rf /var/lib/apt/lists/*
+
+RUN apt-get -yq fonts-dejavu fonts-liberation fonts-crosextra-carlito fonts-takao-gothic fonts-opensymbol
 
 COPY config /app/ds/setup/config/
 COPY run-document-server.sh /app/ds/run-document-server.sh
