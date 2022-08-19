@@ -14,43 +14,44 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d && \
     locale-gen en_US.UTF-8 && \
     echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections && \
     apt-get -yq install \
-        adduser \
-        apt-utils \
-        bomstrip \
-        certbot \
-        curl \
-        gconf-service \
-        htop \
-        libasound2 \
-        libboost-regex-dev \
-        libcairo2 \
-        libcurl3-gnutls \
-        libcurl4 \
-        libgtk-3-0 \
-        libnspr4 \
-        libnss3 \
-        libstdc++6 \
-        libxml2 \
-        libxss1 \
-        libxtst6 \
-        mysql-client \
-        nano \
-        net-tools \
-        netcat-openbsd \
-        nginx-extras \
-        postgresql \
-        postgresql-client \
-        pwgen \
-        rabbitmq-server \
-        redis-server \
-        software-properties-common \
-        sudo \
-        supervisor \
-        ttf-mscorefonts-installer \
-        xvfb \
-        zlib1g && \
+    adduser \
+    apt-utils \
+    bomstrip \
+    certbot \
+    curl \
+    gconf-service \
+    htop \
+    libasound2 \
+    libboost-regex-dev \
+    libcairo2 \
+    libcurl3-gnutls \
+    libcurl4 \
+    libgtk-3-0 \
+    libnspr4 \
+    libnss3 \
+    libstdc++6 \
+    libxml2 \
+    libxss1 \
+    libxtst6 \
+    mysql-client \
+    nano \
+    net-tools \
+    netcat-openbsd \
+    nginx-extras \
+    postgresql \
+    postgresql-client \
+    pwgen \
+    rabbitmq-server \
+    redis-server \
+    software-properties-common \
+    sudo \
+    supervisor \
+    ttf-mscorefonts-installer \
+    xvfb \
+    zlib1g && \
+    apt-get -yq fonts-dejavu fonts-liberation fonts-crosextra-carlito fonts-takao-gothic fonts-opensymbol && \
     if [  $(ls -l /usr/share/fonts/truetype/msttcorefonts | wc -l) -ne 61 ]; \
-        then echo 'msttcorefonts failed to download'; exit 1; fi  && \
+    then echo 'msttcorefonts failed to download'; exit 1; fi  && \
     echo "SERVER_ADDITIONAL_ERL_ARGS=\"+S 1:1\"" | tee -a /etc/rabbitmq/rabbitmq-env.conf && \
     sed -i "s/bind .*/bind 127.0.0.1/g" /etc/redis/redis.conf && \
     sed 's|\(application\/zip.*\)|\1\n    application\/wasm wasm;|' -i /etc/nginx/mime.types && \
